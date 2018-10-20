@@ -1,3 +1,5 @@
+
+//set variables
 var isGameOn = 0;
 var userGuess = "";
 var word = "";
@@ -7,6 +9,10 @@ var wrongLetters = [];
 var wrongCount = 0;
 var winCount = 0;
 var losesCount = 0;
+var winDiv = document.getElementById("winDiv");
+var loseDiv = document.getElementById("loseDiv")
+
+
 
 var words = [
     "school",
@@ -23,27 +29,36 @@ var words = [
 // re-set appropriate varaibles back to zero, or one (game active)
 // choose new word, set new word array
 
-//choose word, make dashed word
-    var word = words[Math.floor(Math.random() * words.length)];
-    var answerBlank = [];
+
+function startGame() { 
+
+    word = words[Math.floor(Math.random() * words.length)];
+    answerBlank = [];
     for (var i = 0; i < word.length; i++){
         answerBlank[i] = "_";
     }
-    var wordArray = word.split('');
-    var wrongLetters = [];
-    var wrongCount = 0;
-    var winCount = 0;
-    var losesCount = 0;
+    wordArray = word.split('');
+    wrongLetters = [];
+    wrongCount = 0;
+    isGameOn = 1;
+}
+
+
 
 document.onkeyup = function(event) {
-    var characterValid = false;
-    userGuess = event.key;
-    userGuess = userGuess.toLowerCase();
+
+    if (isGameOn == 0) {
+        startGame();
+    }
+    else {
+        userGuess = event.key;
+        userGuess = userGuess.toLowerCase();
  
-    if (validCharater() == true) {
-        compareGuess();
-        setTextVariables();
-        isGameOver();
+        if (validCharater() == true) {
+            compareGuess();
+            setTextVariables();
+            isGameOver();
+        }
     }
 }
 
@@ -64,12 +79,14 @@ function compareGuess(){
 
 function isGameOver() {
     if (answerBlank.indexOf("_") == -1) {
-       // confirm("game over you win!");
        winCount++;
+       isGameOn = 0;
+       greenb();
     }
     else if (wrongCount > 12) {
-        // confirm("game over you lose");
         losesCount++;
+        isGameOn = 0;
+        redb()
     }
 }
 
@@ -100,7 +117,31 @@ function validCharater() {
     }
 }
 
+function greenb() {
+        if (winDiv.style.backgroundColor == "") {
+            winDiv.style.backgroundColor = "green";
+        } else if (winDiv.style.backgroundColor == "green") {
+            winDiv.style.backgroundColor = "rgb(0, 255, 127)";
+        } else if (winDiv.style.backgroundColor == "rgb(0, 255, 127)"){
+            winDiv.style.backgroundColor = "green";
+        }
+        if (loseDiv.style.backgroundColor != "") {
+            loseDiv.style.backgroundColor = "";
+        }
+}
 
+function redb() {
+    if (loseDiv.style.backgroundColor == "") {
+        loseDiv.style.backgroundColor = "red";
+    } else if (loseDiv.style.backgroundColor == "red") {
+        loseDiv.style.backgroundColor = "rgb(250, 128, 114)";
+    } else if (loseDiv.style.backgroundColor == "rgb(250, 128, 114)"){
+        loseDiv.style.backgroundColor = "red";
+    }
+    if (winDiv.style.backgroundColor != "") {
+        winDiv.style.backgroundColor = "";
+    }
+}
 
     
    // Game code goes here
