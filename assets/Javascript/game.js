@@ -43,7 +43,7 @@ function startGame() {
 }
 
 
-//User input event and start game
+//User input event and game 
 document.onkeyup = function(event) {
 
     if (isGameOn == 0) {
@@ -61,7 +61,7 @@ document.onkeyup = function(event) {
     }
 }
 
-//compare guess function to make sure guess is accurate
+//compare guess function and push letters 
 function compareGuess(){
     var matches = 0;
     for (var i = 0; i < wordArray.length; i++) {
@@ -76,6 +76,7 @@ function compareGuess(){
     }
 }    
 
+//game over reset game
 function isGameOver() {
     if (answerBlank.indexOf("_") == -1) {
        winCount++;
@@ -120,16 +121,16 @@ function validCharater() {
 
 //turn the wins to 2 greens
 function greenb() {
-        if (winDiv.style.backgroundColor == "") {
-            winDiv.style.backgroundColor = "green";
-        } else if (winDiv.style.backgroundColor == "green") {
-            winDiv.style.backgroundColor = "rgb(0, 255, 127)";
-        } else if (winDiv.style.backgroundColor == "rgb(0, 255, 127)"){
-            winDiv.style.backgroundColor = "green";
-        }
-        if (loseDiv.style.backgroundColor != "") {
-            loseDiv.style.backgroundColor = "";
-        }
+    if (winDiv.style.backgroundColor == "") {
+        winDiv.style.backgroundColor = "green";
+    } else if (winDiv.style.backgroundColor == "green") {
+        winDiv.style.backgroundColor = "rgb(0, 255, 127)";
+    } else if (winDiv.style.backgroundColor == "rgb(0, 255, 127)"){
+        winDiv.style.backgroundColor = "green";
+    }
+    if (loseDiv.style.backgroundColor != "") {
+        loseDiv.style.backgroundColor = "";
+    }
 }
 
 //turn the loses to 2 reds
