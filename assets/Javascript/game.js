@@ -21,15 +21,14 @@ var words = [
     "store",
     "mall",
     "house",
+    "hotel",
+    "restaurant",
     "cabin"
 ];
 
-//outside, crweate all variables that are used by many functions
-//insisde of game-start function:
-// re-set appropriate varaibles back to zero, or one (game active)
-// choose new word, set new word array
 
 
+//start game choose random word and replace with "_"
 function startGame() { 
 
     word = words[Math.floor(Math.random() * words.length)];
@@ -44,7 +43,7 @@ function startGame() {
 }
 
 
-
+//User input event and start game
 document.onkeyup = function(event) {
 
     if (isGameOn == 0) {
@@ -94,10 +93,10 @@ function isGameOver() {
 function setTextVariables() {
 
     var answerBlankText = document.getElementById("blankguess-text")
-    answerBlankText.textContent = answerBlank
+    answerBlankText.textContent = answerBlank.join(" ")
 
     var wrongLettersText = document.getElementById("wrongguess-text")
-    wrongLettersText.textContent = wrongLetters.join(", ");
+    wrongLettersText.textContent = wrongLetters.join(" ");
 
     var winDisplay = document.getElementById("wins")
     winDisplay.textContent = winCount;
@@ -107,7 +106,7 @@ function setTextVariables() {
 
 
 }       
-
+///function to determined if user has chosen a letter from alphabet
 function validCharater() {
    var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
     if (alphabet.indexOf(userGuess) == -1) {
@@ -117,6 +116,7 @@ function validCharater() {
     }
 }
 
+//turn the wins to 2 greens
 function greenb() {
         if (winDiv.style.backgroundColor == "") {
             winDiv.style.backgroundColor = "green";
@@ -130,6 +130,7 @@ function greenb() {
         }
 }
 
+//turn the loses to 2 reds
 function redb() {
     if (loseDiv.style.backgroundColor == "") {
         loseDiv.style.backgroundColor = "red";
@@ -144,29 +145,3 @@ function redb() {
 }
 
     
-   // Game code goes here
-    // Show the player their progress
-    // Take input from the player
-    // Update answerBlank and remainingLetters for every correct guess
- 
-    
-
-
-    
-// If the word has been guessed then break (End game)
-
-// else // If the word has not been guessed {
-
-    //  Show the player their current progress
-    
-    //  Get a guess from the player
-
-    //  If the guess is in the word {
-            //compareGuessToWord(guess, word)
-         //  Update the player's progress with the guess
-                // replace blank spaces with correct letter
-    // else (the guess is not in the word)
-
-        // mark wrong
-        // exit 
-
