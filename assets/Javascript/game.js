@@ -85,7 +85,9 @@ function isGameOver() {
     else if (wrongCount > 12) {
         losesCount++;
         isGameOn = 0;
+        answerBlank = wordArray;
         redb()
+        setTextVariables()
     }
 }
 
